@@ -1,10 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ page_title }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon</title>
+    <!-- STYLES -->
+    <!-- MAIN -->
+    <link rel="stylesheet" href={% static "/css/investment/styles.css" %}>
+    <link rel="stylesheet" href={% static "/css/investment/reset.css" %}>
+    <!-- SCRIPTS -->
+    <!-- JQUERY -->
+    <script src={% static "/js/investment/libs/jquary/jquery.min.js" %} defer></script>
+    <!-- JQUERY-VALIDATE -->
+    <script src={% static "/js/investment/libs/jquary-validation/jquery.validate.min.js" %} defer></script>
+    <!-- BLOCKS -->
+
+    <!-- MAIN -->
+    <script src={% static "/js/investment/main.js" %} defer></script>
 </head>
-<body>
+<body class="page">
 {% block content %}
 
 {% endblock %}
