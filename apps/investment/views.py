@@ -1,7 +1,6 @@
 import django.contrib.auth as auth
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
 
 from . import models
 
@@ -18,7 +17,6 @@ def report(request):
     })
 
 
-@csrf_exempt
 def registration(request):
     user = request.user
 
