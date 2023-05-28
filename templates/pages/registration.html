@@ -3,7 +3,8 @@
     <body class="page">
 
     <main class="main">
-        <form id="authForm" class="form box-shadow main__form" method="POST">
+        <form id="authForm" class="form box-shadow main__form" method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
             <div class="form__title">
                 Вход
             </div>
@@ -43,7 +44,7 @@
                               fill="white"></path>
                     </svg>
                 </button>
-                <button type="button" id="registerBtn" class="btn">
+                <button type="submit" id="registerBtn" class="btn">
                     Регистрация
                 </button>
             </div>
@@ -160,7 +161,7 @@
                 <!-- name organization -->
                 <div class="form__item">
                     <div class="form__item-wrapper">
-                        <input type="text" data-rule-spaceFormat="true" class="input form__input"
+                        <input type="text" data-rule-spaceFormat="false" class="input form__input"
                                placeholder="Название организации" name="nameOrganization">
                     </div>
                     <div class="form__invalid">
@@ -213,7 +214,7 @@
                 <!-- business branch -->
                 <div class="form__item">
                     <div class="form__item-wrapper">
-                        <input type="text" class="input form__input" placeholder="Отрасль бизнеса">
+                        <input type="text" class="input form__input" placeholder="Отрасль бизнеса" name="branch">
                     </div>
                 </div>
                 <!-- input and invalid -->
@@ -246,7 +247,7 @@
                 <!-- job title -->
                 <div class="form__item form__item--invalid">
                     <div class="form__item-wrapper">
-                        <input type="text" data-rule-spaceFormat="true" class="input form__input"
+                        <input type="text" data-rule-spaceFormat="false" class="input form__input"
                                placeholder="Должность" name="jobTitle">
                     </div>
                     <div class="form__invalid">
@@ -371,7 +372,7 @@
                 </div>
             </div>
             <div class="form__btns">
-                <button type="submit" class="btn">
+                <button type="button" class="btn" onclick="submitRegistrationForm()">
                     Регистрация
                 </button>
             </div>

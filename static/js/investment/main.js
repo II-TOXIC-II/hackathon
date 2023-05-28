@@ -17,7 +17,7 @@ $(document).ready(function () {
     $.validator.addMethod(
         "spaceFormat",
         function (value, element) {
-            return /^(?<!\s)[a-zA-Zа-яА-Я0-9_@.-]*?(?!\s)$/.test(value);
+            return /^(?<!\s)[a-zA-Zа-яА-Я0-9_@.-]3.*?(?!\s)$/.test(value);
             // ^(?<!\s)[a-zA-Zа-яА-Я0-9_@.-](.*[a-zA-Zа-яА-Я0-9_@.-])*?(?!\s)
         },
         "Неправильный формат"
@@ -55,7 +55,7 @@ $(document).ready(function () {
             }
         },
         errorPlacement: function (error, element) {
-            if (element.attr("name") == "login" || element.attr("name") == "password") {
+            if (element.attr("name") === "login" || element.attr("name") === "password") {
                 element.parent().parent().children().children()[0].classList.add("form__item--invalid");
             }
             return true;
@@ -152,10 +152,10 @@ $(document).ready(function () {
 
         },
         errorPlacement: function (error, element) {
-            if (element.attr('name') != "inn" && element.attr('name') != "site" && element.attr('name') != "country" && element.attr('name') != "city") {
+            if (element.attr('name') !== "inn" && element.attr('name') !== "site" && element.attr('name') !== "country" && element.attr('name') !== "city") {
                 element.parent().addClass("form__item--invalid");
 
-                if (element.parent().siblings().children("span")[0].innerText != error[0].innerText) {
+                if (element.parent().siblings().children("span")[0].innerText !== error[0].innerText) {
                     element.parent().siblings().children("span")[0].innerText = error[0].innerText;
                     element.parent().siblings().children("span")[0].classList.remove("form__span");
                     element.parent().siblings().children("span")[0].offsetWidth;
@@ -164,7 +164,7 @@ $(document).ready(function () {
             } else {
                 element.parent().parent().addClass("form__item--invalid");
 
-                if (element.parent().parent().siblings().children("span")[0].innerText != error[0].innerText) {
+                if (element.parent().parent().siblings().children("span")[0].innerText !== error[0].innerText) {
                     element.parent().parent().siblings().children("span")[0].innerText = error[0].innerText;
                     element.parent().parent().siblings().children("span")[0].classList.remove("form__span");
                     element.parent().parent().siblings().children("span")[0].offsetWidth;
@@ -226,7 +226,7 @@ $(document).ready(function () {
         errorPlacement: function (error, element) {
             element.parent().addClass("form__item--invalid");
 
-            if (element.parent().siblings().children("span")[0].innerText != error[0].innerText) {
+            if (element.parent().siblings().children("span")[0].innerText !== error[0].innerText) {
                 element.parent().siblings().children("span")[0].innerText = error[0].innerText;
                 element.parent().siblings().children("span")[0].classList.remove("form__span");
                 element.parent().siblings().children("span")[0].offsetWidth;
@@ -247,12 +247,12 @@ $(document).ready(function () {
 
 
     //  Hiding and showing forms
-    registerForm = document.querySelector("#registerForm");
-    registerContinueForm = document.querySelector("#registerContinueForm");
-    registerBtn = document.querySelector("#registerBtn");
-    registerBackBtn = document.querySelector("#registerBackBtn");
-    registerContinueBtn = document.querySelector('#registerContinueBtn');
-    registerContinueBackBtn = document.querySelector('#registerContinueBackBtn');
+    let registerForm = document.querySelector("#registerForm");
+    let registerContinueForm = document.querySelector("#registerContinueForm");
+    let registerBtn = document.querySelector("#registerBtn");
+    let registerBackBtn = document.querySelector("#registerBackBtn");
+    let registerContinueBtn = document.querySelector('#registerContinueBtn');
+    let registerContinueBackBtn = document.querySelector('#registerContinueBackBtn');
 
     registerBtn.addEventListener("click", () => {
         registerForm.classList.toggle("register--active");
@@ -283,7 +283,6 @@ $(document).ready(function () {
                     object.parent().removeClass('form__item--invalid');
                 }
             }
-            ;
         });
     }
 
@@ -296,19 +295,16 @@ $(document).ready(function () {
                     object.parent().siblings(".load-line").children('div').addClass('load-line--medium');
                 }
             }
-            ;
             if (object.val().length < 8) {
                 object.parent().siblings(".load-line").children('div').removeClass('load-line--medium');
                 object.parent().siblings(".load-line").children('div').removeClass('load-line--strong');
                 object.parent().siblings(".load-line").children('div').addClass('load-line--low');
             }
-            ;
             if (object.val().length >= 16) {
                 if (object.valid()) {
                     object.parent().siblings(".load-line").children('div').addClass('load-line--strong');
                 }
             }
-            ;
         });
     }
 
@@ -327,7 +323,6 @@ $(document).ready(function () {
                     object.parent().parent().removeClass('form__item--invalid');
                 }
             }
-            ;
         });
     }
 
@@ -360,3 +355,24 @@ $(document).ready(function () {
     }
 });
 
+function submitRegistrationForm() {
+    let formPart1 = document.querySelector("#registerForm");
+    let formPart2 = document.querySelector("#registerContinueForm");
+
+    let formPart1Data = new FormData(formPart1);
+    let formPart2Data = new FormData(formPart2);
+
+    let data = {}
+
+    for (const pair of formPart1Data.entries()) {
+        data[pair[0]] = pair[1];
+    }
+
+    for (const pair of formPart2Data.entries()) {
+        data[pair[0]] = pair[1];
+    }
+
+    $.post('/registration', data, function (response) {
+        location.reload();
+    });
+}

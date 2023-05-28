@@ -1,8 +1,9 @@
 import django.contrib.auth as auth
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 
-from . import forms, models
+from . import models
 
 
 def home(request):
@@ -17,6 +18,7 @@ def report(request):
     })
 
 
+@csrf_exempt
 def registration(request):
     user = request.user
 
@@ -24,35 +26,34 @@ def registration(request):
         return redirect("home")
 
     if request.method == "POST":
-        form = forms.CustomUserCreationForm(data=request.POST)
+        fields = request.POST.dict()
 
-        if form.is_valid():
-            user = form.save()
-            auth.login(request, user)
+        User.objects.create_user(username=fields["registerLogin"], password=fields["registerPassword"],
+                                 email=fields['email'], first_name=fields['firstName'],
+                                 last_name=fields['lastName']).save()
 
-            user_model = models.CustomUser.objects.create(
-                first_name=form.cleaned_data['first_name'],
-                last_name=form.cleaned_data['last_name'],
-                patronymic=form.cleaned_data['patronymic'],
-                email=form.cleaned_data['email'],
-                organization_name=form.cleaned_data['organization_name'],
-                taxpayer_identification_number=form.cleaned_data['taxpayer_identification_number'],
-                organization_web_site=form.cleaned_data['organization_web_site'],
-                branch=form.cleaned_data['branch'],
-                country=form.cleaned_data['country'],
-                city=form.cleaned_data['city'],
-                post=form.cleaned_data['post']
-            )
-            user_model.save()
+        user = auth.authenticate(request, username=fields["registerLogin"], password=fields["registerPassword"])
+        auth.login(request, user)
 
-            return redirect("home")
+        user_model = models.CustomUser.objects.create(
+            first_name=fields['firstName'],
+            last_name=fields['lastName'],
+            patronymic=fields['fatherName'],
+            email=fields['email'],
+            organization_name=fields['nameOrganization'],
+            taxpayer_identification_number=fields['inn'],
+            organization_web_site=fields['site'],
+            branch=fields['branch'],
+            country=fields['country'],
+            city=fields['city'],
+            post=fields['jobTitle']
+        )
+        user_model.save()
 
-    else:
-        form = forms.CustomUserCreationForm()
+        return redirect("home")
 
     return render(request, "pages/registration.html", {
         "page_title": "Регистрация",
-        "form":       form,
     })
 
 
@@ -63,24 +64,18 @@ def login(request):
         return redirect("home")
 
     if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
+        fields = request.POST.dict()
 
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = auth.authenticate(request, username=username, password=password)
+        username = fields['login']
+        password = fields['password']
 
-            if user is not None:
-                auth.login(request, user)
-                return redirect("home")
+        user = auth.authenticate(request, username=username, password=password)
 
-    else:
-        form = AuthenticationForm()
+        if user is not None:
+            auth.login(request, user)
+            return redirect("home")
 
-    return render(request, "pages/login.html", {
-        "page_title": "Вход",
-        "form":       form,
-    })
+    return redirect("registration")
 
 
 def logout(request):
