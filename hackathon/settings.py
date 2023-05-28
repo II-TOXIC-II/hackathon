@@ -120,6 +120,8 @@ STATICFILES_DIRS = [
 
 STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
 # Default primary key field type

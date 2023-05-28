@@ -1,4 +1,5 @@
 import django.contrib.auth as auth
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
@@ -83,3 +84,8 @@ def logout(request):
         auth.logout(request)
 
     return redirect("login")
+
+
+@login_required(login_url='registration')
+def generate_report_pdf(request):
+    pass
