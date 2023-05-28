@@ -11,6 +11,12 @@ def home(request):
     })
 
 
+def report(request):
+    return render(request, "pages/report.html", {
+        "page_title": "Отчет"
+    })
+
+
 def registration(request):
     user = request.user
 
