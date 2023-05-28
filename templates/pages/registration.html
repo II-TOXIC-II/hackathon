@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+    <body class="page">
+
     <main class="main">
         <form id="authForm" class="form box-shadow main__form" method="POST">
             <div class="form__title">
@@ -9,7 +11,7 @@
                 <!-- input and invalid -->
                 <div class="form__item">
                     <input type="text" data-rule-standartEu="true" class="input form__input" placeholder="Логин"
-                           name="login" data-rule-standartEu="true">
+                           name="login">
                     <div id="authFormInvalid" class="form__invalid">
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.33331 7.69106L6.33331 5.02439C6.33331 4.6562 6.63179 4.35773 6.99998 4.35773C7.36817 4.35773 7.66664 4.6562 7.66664 5.02439L7.66665 7.69106C7.66665 8.05925 7.36817 8.35773 6.99998 8.35773C6.63179 8.35773 6.33331 8.05925 6.33331 7.69106Z"
@@ -382,4 +384,6 @@
             </button>
         </form>
     </main>
+
+    </body>
 {% endblock %}
