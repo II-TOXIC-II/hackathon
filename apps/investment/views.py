@@ -1,7 +1,12 @@
+from io import BytesIO
+
 import django.contrib.auth as auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.template.loader import get_template
+from reportlab.pdfgen import canvas
 
 from . import models
 
@@ -88,4 +93,27 @@ def logout(request):
 
 @login_required(login_url='registration')
 def generate_report_pdf(request):
-    pass
+    data = {
+    }
+
+    # Получаем шаблон
+    template = get_template('includes/pdf.html')
+
+    # Заполняем шаблон данными
+    html = template.render(data)
+
+    # Создаем PDF документ
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    buffer = BytesIO()
+    pdf = canvas.Canvas(buffer)
+
+    # Добавляем текст и изображения в PDF документ
+    pdf.drawString(100, 750, "Welcome to Reportlab!")
+    pdf.save()
+
+    # Получаем содержимое PDF документа из буфера и добавляем его к HTTP ответу
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+    return response

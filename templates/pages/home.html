@@ -7,10 +7,9 @@
         <section class="top main__top">
             <div class="container top__container">
                 <div class="top__left">
-                    <h1 class="h1 top__title">ИНВЕСТИЦИОННЫЙ КАЛЬКУЛЯТОР СЛОЖНОГО ПРОЦЕНТА С ПОПОЛНЕНИЕМ</h1>
+                    <h1 class="h1 top__title">Инвестиционный калькулятор города Москвы</h1>
                     <div class="text--lg">
-                        Калькулятор сложных процентов помогает быстро рассчитать доходность от инвестиций. Его работа
-                        построена на формуле сложных процентов.
+                        {#Подзаголовок#}
                     </div>
                 </div>
                 <div class="top__right">
@@ -33,6 +32,11 @@
                             </div>
                         </div>
                         <div class="select__items">
+                            {% for form_field in form_fields.brunch %}
+                                <div class="select__item">
+                                    {{ form_field }}
+                                </div>
+                            {% endfor %}
                             <div class="select__item">
                                 item-1
                             </div>
@@ -159,114 +163,114 @@
                     <button class="btn  shadow " type="submit">Рассчитать</button>
                 </div>
             </form>
-            <section class="how-work">
-                <div class="container">
-                    <div class="how-work__text">
-                        <h2 class="h2 how-work__title">Как работает калькулятор</h2>
-                        <div class="how-work__paragraph">
-                            Использовать калькулятор просто — достаточно заполнить все поля соответствующими данными и
-                            нажать кнопку «Рассчитать». В результате вы получите график доходности и подробный отчёт за
-                            выбранный период.
-                        </div>
-
-                        <span class="how-work__span">Какая потребуется информация</span>
-                        <ol class="how-work__ol">
-                            <li class="how-work__li">
-                                <span class="how-work__span">Стартовая сумма</span> — впишите сумму, которую вы готовы
-                                инвестировать, выбрав нужную валюту.
-                            </li>
-                            <li class="how-work__li">
-                                <span class="how-work__span">Среднегодовая доходность</span> — укажите процент желаемой
-                                доходности за год. Депозиты дают около 3%, ОФЗ — до 7%, инвестиции в акции компаний и
-                                ETF могут показать доходность до 12% при умеренном риске.
-                            </li>
-                            <li class="how-work__li">
-                                <span class="how-work__span">Ежемесячное пополнение</span> — введите сумму, которую
-                                планируете инвестировать каждый месяц. Если дополнительные средства не будут вноситься,
-                                поле заполнять не нужно.
-                            </li>
-                            <li class="how-work__li">
-                                <span class="how-work__span">Срок инвестирования</span> — укажите предполагаемый период.
-                                Учитываются ежемесячные пополнения. Чем больше срок инвестирования, тем выше эффект
-                                сложного процента.
-                            </li>
-                        </ol>
-
-                        Готово! Осталось нажать кнопку <span class="how-work__span">«Рассчитать»</span>. Калькулятор в
-                        виде таблицы покажет результат — сумму, которая будет находиться на счёте в каждый период
-                        инвестирования.
-                    </div>
-                </div>
-            </section>
+{#            <section class="how-work">#}
+{#                <div class="container">#}
+{#                    <div class="how-work__text">#}
+{#                        <h2 class="h2 how-work__title">Как работает калькулятор</h2>#}
+{#                        <div class="how-work__paragraph">#}
+{#                            Использовать калькулятор просто — достаточно заполнить все поля соответствующими данными и#}
+{#                            нажать кнопку «Рассчитать». В результате вы получите график доходности и подробный отчёт за#}
+{#                            выбранный период.#}
+{#                        </div>#}
+{##}
+{#                        <span class="how-work__span">Какая потребуется информация</span>#}
+{#                        <ol class="how-work__ol">#}
+{#                            <li class="how-work__li">#}
+{#                                <span class="how-work__span">Стартовая сумма</span> — впишите сумму, которую вы готовы#}
+{#                                инвестировать, выбрав нужную валюту.#}
+{#                            </li>#}
+{#                            <li class="how-work__li">#}
+{#                                <span class="how-work__span">Среднегодовая доходность</span> — укажите процент желаемой#}
+{#                                доходности за год. Депозиты дают около 3%, ОФЗ — до 7%, инвестиции в акции компаний и#}
+{#                                ETF могут показать доходность до 12% при умеренном риске.#}
+{#                            </li>#}
+{#                            <li class="how-work__li">#}
+{#                                <span class="how-work__span">Ежемесячное пополнение</span> — введите сумму, которую#}
+{#                                планируете инвестировать каждый месяц. Если дополнительные средства не будут вноситься,#}
+{#                                поле заполнять не нужно.#}
+{#                            </li>#}
+{#                            <li class="how-work__li">#}
+{#                                <span class="how-work__span">Срок инвестирования</span> — укажите предполагаемый период.#}
+{#                                Учитываются ежемесячные пополнения. Чем больше срок инвестирования, тем выше эффект#}
+{#                                сложного процента.#}
+{#                            </li>#}
+{#                        </ol>#}
+{##}
+{#                        Готово! Осталось нажать кнопку <span class="how-work__span">«Рассчитать»</span>. Калькулятор в#}
+{#                        виде таблицы покажет результат — сумму, которая будет находиться на счёте в каждый период#}
+{#                        инвестирования.#}
+{#                    </div>#}
+{#                </div>#}
+{#            </section>#}
         </section>
 
 
-        <section class="window page__window">
-            <div class="container">
-                <div class="window__container shadow">
-                    <div class="window__left">
-                        <h2 class="h2 window__title">Максимизация прибыли</h2>
-                        <div class="text--lg">Инвестиции позволяют активировать силу сложного процента. Его суть в том,
-                            что вы получаете проценты не только на начальную сумму, но и на уже накопленные проценты, то
-                            есть проценты на проценты. Так можно заработать больше: вместо того, чтобы тратить
-                            полученную прибыль, вы ее снова вкладываете. При этом увеличить эффективность таких
-                            инвестиций можно за счет регулярных пополнений.
-                        </div>
-                    </div>
-                    <div class="window__right">
-                        <img src='{% static "/img/investment/window/item.png" %}' alt="window" srcset="">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="advantages page__advantages">
-            <div class="container">
-                <h2 class="advantages__title h2">
-                    Преимущества:
-                </h2>
-                <div class="advantages__items">
-                    <div class="advantages__item shadow">
-                        <img class="advantages__svg" src='{% static "/img/investment/advantages/case.svg" %}' alt="">
-                        <div class="advantages__desc">
-                            Собирать инвестиционный портфель
-                        </div>
-                    </div>
-                    <div class="advantages__item shadow">
-                        <img class="advantages__svg" src='{% static "/img/investment/advantages/cup.svg" %}' alt="">
-                        <div class="advantages__desc">
-                            Составлять стратегию инвестирования
-                        </div>
-                    </div>
-                    <div class="advantages__item shadow">
-                        <img class="advantages__svg" src='{% static "/img/investment/advantages/graphic.svg" %}' alt="">
-                        <div class="advantages__desc">
-                            Понимать, почему одни акции растут, а другие падают
-                        </div>
-                    </div>
-                    <div class="advantages__item shadow">
-                        <img class="advantages__svg" src='{% static "/img/investment/advantages/graphics-2.svg" %}'
-                             alt="">
-                        <div class="advantages__desc">
-                            Оценивать компании по финансовым показателям
-                        </div>
-                    </div>
-                    <div class="advantages__item shadow">
-                        <img class="advantages__svg" src='{% static "/img/investment/advantages/loop.svg" %}' alt="">
-                        <div class="advantages__desc">
-                            Ориентироваться в финансовых инструментах
-                        </div>
-                    </div>
-                    <div class="advantages__item shadow shadow">
-                        <img class="advantages__svg" src='{% static "/img/investment/advantages/shield.svg" %}' alt="">
-                        <div class="advantages__desc">
-                            Не поддаваться панике, когда все уже поддались
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+{#        <section class="window page__window">#}
+{#            <div class="container">#}
+{#                <div class="window__container shadow">#}
+{#                    <div class="window__left">#}
+{#                        <h2 class="h2 window__title">Максимизация прибыли</h2>#}
+{#                        <div class="text--lg">Инвестиции позволяют активировать силу сложного процента. Его суть в том,#}
+{#                            что вы получаете проценты не только на начальную сумму, но и на уже накопленные проценты, то#}
+{#                            есть проценты на проценты. Так можно заработать больше: вместо того, чтобы тратить#}
+{#                            полученную прибыль, вы ее снова вкладываете. При этом увеличить эффективность таких#}
+{#                            инвестиций можно за счет регулярных пополнений.#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="window__right">#}
+{#                        <img src='{% static "/img/investment/window/item.png" %}' alt="window" srcset="">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </section>#}
+{##}
+{#        <section class="advantages page__advantages">#}
+{#            <div class="container">#}
+{#                <h2 class="advantages__title h2">#}
+{#                    Преимущества:#}
+{#                </h2>#}
+{#                <div class="advantages__items">#}
+{#                    <div class="advantages__item shadow">#}
+{#                        <img class="advantages__svg" src='{% static "/img/investment/advantages/case.svg" %}' alt="">#}
+{#                        <div class="advantages__desc">#}
+{#                            Собирать инвестиционный портфель#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="advantages__item shadow">#}
+{#                        <img class="advantages__svg" src='{% static "/img/investment/advantages/cup.svg" %}' alt="">#}
+{#                        <div class="advantages__desc">#}
+{#                            Составлять стратегию инвестирования#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="advantages__item shadow">#}
+{#                        <img class="advantages__svg" src='{% static "/img/investment/advantages/graphic.svg" %}' alt="">#}
+{#                        <div class="advantages__desc">#}
+{#                            Понимать, почему одни акции растут, а другие падают#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="advantages__item shadow">#}
+{#                        <img class="advantages__svg" src='{% static "/img/investment/advantages/graphics-2.svg" %}'#}
+{#                             alt="">#}
+{#                        <div class="advantages__desc">#}
+{#                            Оценивать компании по финансовым показателям#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="advantages__item shadow">#}
+{#                        <img class="advantages__svg" src='{% static "/img/investment/advantages/loop.svg" %}' alt="">#}
+{#                        <div class="advantages__desc">#}
+{#                            Ориентироваться в финансовых инструментах#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="advantages__item shadow shadow">#}
+{#                        <img class="advantages__svg" src='{% static "/img/investment/advantages/shield.svg" %}' alt="">#}
+{#                        <div class="advantages__desc">#}
+{#                            Не поддаваться панике, когда все уже поддались#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </section>#}
     </main>
-    {% include "includes/footer.html" %}
+{#    {% include "includes/footer.html" %}#}
     </body>
 {% endblock %}
