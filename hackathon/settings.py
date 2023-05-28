@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.investment',
+    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -55,8 +56,7 @@ ROOT_URLCONF = 'hackathon.urls'
 TEMPLATES = [
     {
         'BACKEND':  'django.template.backends.django.DjangoTemplates',
-        'DIRS':     [BASE_DIR / 'templates']
-        ,
+        'DIRS':     [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS':  {
             'context_processors': [
@@ -118,7 +118,20 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+STATICFILES_FINDERS = [
+    'compressor.finders.CompressorFinder',
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Compressor settings
+
+COMPRESS_ENABLED = True  # Включить сжатие
+COMPRESS_OFFLINE = False  # Автоматическое сжатие при запуске команды "python manage.py compress"
+COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter', 'compressor.filters.cssmin.CSSMinFilter']
+COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.JSMinFilter']  # Добавление JS фильтров
+COMPRESS_OUTPUT_DIR = 'compressed/'  # Директория для сохранения сжатых файлов
+COMPRESS_ROOT = STATIC_URL

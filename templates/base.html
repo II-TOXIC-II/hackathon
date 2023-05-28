@@ -1,4 +1,5 @@
 {% load static %}
+{% load compress %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,18 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hackathon</title>
     <!-- STYLES -->
-    <!-- MAIN -->
-    <link rel="stylesheet" href='{% static "/css/investment/styles.css" %}'>
-    <link rel="stylesheet" href='{% static "/css/investment/reset.css" %}'>
+    {% compress css %}
+        <!-- MAIN -->
+        <link rel="stylesheet" href='{% static "/css/investment/styles.css" %}'>
+        <link rel="stylesheet" href='{% static "/css/investment/reset.css" %}'>
+        <link rel="stylesheet" href='{% static "/css/investment/fonts/montserrat/montserrat.css" %}'>
+    {% endcompress %}
     <!-- SCRIPTS -->
-    <!-- JQUERY -->
-    <script src='{% static "/js/investment/libs/jquary/jquery.min.js" %}' defer></script>
-    <!-- JQUERY-VALIDATE -->
-    <script src='{% static "/js/investment/libs/jquary-validation/jquery.validate.min.js" %}' defer></script>
-    <!-- BLOCKS -->
-    <script src='{% static "/js/investment/select/select.js" %}' defer></script>
-    <!-- MAIN -->
-    <script src='{% static "/js/investment/main.js" %}' defer></script>
+    {% compress js %}
+        <!-- JQUERY -->
+        <script src='{% static "/js/investment/libs/jquary/jquery.min.js" %}' defer></script>
+        <!-- JQUERY-VALIDATE -->
+        <script src='{% static "/js/investment/libs/jquary-validation/jquery.validate.min.js" %}' defer></script>
+        <!-- BLOCKS -->
+        <script src='{% static "/js/investment/select/select.js" %}' defer></script>
+        <!-- MAIN -->
+        <script src='{% static "/js/investment/main.js" %}' defer></script>
+    {% endcompress %}
 </head>
 {% block content %}
 

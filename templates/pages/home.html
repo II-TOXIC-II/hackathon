@@ -20,7 +20,8 @@
         </section>
 
         <section class="calculate page__calculate">
-            <form method="post" class="container calculate__container">
+            <form method="post" class="container calculate__container" action="{% url 'report' %}">
+                {% csrf_token %}
                 <div class="calculate__items">
                     <div class="select">
                         <div class="select__input">
@@ -155,7 +156,7 @@
 
                 </div>
                 <div class="calculate__btn">
-                    <button class="btn  shadow ">Рассчитать</button>
+                    <button class="btn  shadow " type="submit">Рассчитать</button>
                 </div>
             </form>
             <section class="how-work">

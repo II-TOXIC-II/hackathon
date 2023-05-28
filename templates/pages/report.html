@@ -6,7 +6,13 @@
 
         <section class="pdf main__pdf">
             <div class="container">
-                <button class="btn">Скачать PDF</button>
+                {% if user.is_authenticated %}
+                    <button class="btn">Скачать PDF</button>
+                {% else %}
+                    <a href="{% url 'registration' %}">
+                        <button class="btn">Авторизуйтесь, чтобы загрузить PDF отчет</button>
+                    </a>
+                {% endif %}
             </div>
         </section>
 
